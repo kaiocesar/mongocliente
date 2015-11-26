@@ -18,10 +18,14 @@ exports.all = function(callback){
 exports.insert = function(data, callback){
     var collection = db.get().collection('users');
 
-    collection.insert(data, function(err, docs){
+    collection.insertOne(data, function(err, docs){
         if (err){
             callback(err, null);
         }
-        callback(null, docs._id);
+        var ret = "";
+        if(docs.ops.length == 1){
+            ret = docs.ops[0]._id;
+        }
+        callback(null, ret);
     })
 }

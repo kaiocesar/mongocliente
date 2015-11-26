@@ -19,8 +19,12 @@ router.get('/insert', function(req, res){
        if (err){
            res.send(err);
        }  else {
-           console.log(docs);
-           res.send(docs);
+           if (docs){
+               res.send('Add successfully: ' + docs);
+           } else {
+               res.send('Erro ao adicionar');
+           }
+
        }
     });
 });
